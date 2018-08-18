@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sort_menu">
+    <item
+        android:title="@string/menuItem1"
+        android:id="@+id/sort_popular"
+        app:showAsAction="never"
+        android:checkable="true"
+        android:enabled="true"
+        android:checked="true"/>
+    <item
+        android:title="@string/menuItem2"
+        android:id="@+id/sort_rating"
+        app:showAsAction="never"
+        android:checkable="true"
+        android:enabled="true"/>
+    <item
+        android:title="@string/menuItem3"
+        android:id="@+id/refresh"
+        app:showAsAction="ifRoom"/>
+
+</menu>

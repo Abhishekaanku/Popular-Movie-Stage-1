@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <android.support.v7.widget.RecyclerView
+    <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/movie_recycler">
-    </android.support.v7.widget.RecyclerView>
+        android:id="@+id/tv_list_movie"
+        android:numColumns="auto_fit"/>
+    <ProgressBar
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/progress_bar"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:contentDescription="@string/error_message"
+            android:layout_height="400dp"
+            android:id="@+id/error_image"
+            android:visibility="invisible"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_error_content"
+            android:text="@string/error_message"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:visibility="invisible"/>
 
-</LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,3 +1,33 @@
 <resources>
-    <string name="app_name">Popular Movies:Stage 1</string>
+    <string name="app_name">Popular Movie</string>
+    <string name="APIkey">7062904371836128bb9ad227cbbe5562</string>
+    <string name="error_message">Error!Try Checking Your Internet Connection..</string>
+    <string-array name="Months">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>Aug</item>
+        <item>Sept</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+
+    <string name="menuItem1">Sort By Popularity</string>
+    <string name="menuItem2">Sort by Rating</string>
+    <string name="menuItem3">REFRESH</string>
+
+    <string name="fullscale">/10</string>
+    <string name="poster">Movie Poster</string>
+    <string name="plot">Synopsis\n</string>
+    <string name="baseImageURL">https://image.tmdb.org/t/p/w185/</string>
+    <string name="baseAPIURL1">https://api.themoviedb.org/3/movie/popular?api_key=</string>
+    <string name="baseAPIURL2">https://api.themoviedb.org/3/movie/top_rated?api_key=</string>
+    <string name="ButtonText">Next in List</string>
+    <string name="MovieDetail">Movie Detail</string>
+    <string name="DefaultOverview">Not Available!</string>
 </resources>
