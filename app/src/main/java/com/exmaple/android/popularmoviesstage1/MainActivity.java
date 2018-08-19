@@ -2,16 +2,20 @@ package com.exmaple.android.popularmoviesstage1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,15 +52,20 @@ public class MainActivity extends AppCompatActivity implements InternetUtils.URL
                 .load(R.drawable.interneterror)
                 .into(mErrorImageView);
 
-        BackGroundTask backGroundTask=new BackGroundTask();
+       if(isConnectedtoInternet()) {
+           BackGroundTask backGroundTask=new BackGroundTask();
 
-        if(savedInstanceState!=null && savedInstanceState.containsKey("movieList")) {
-            movieList=savedInstanceState.getParcelableArrayList("movieList");
-            backGroundTask.onPostExecute(true);
-        }
-        else {
-            backGroundTask.execute();
-        }
+           if(savedInstanceState!=null && savedInstanceState.containsKey("movieList")) {
+               movieList=savedInstanceState.getParcelableArrayList("movieList");
+               backGroundTask.onPostExecute(true);
+           }
+           else {
+               backGroundTask.execute();
+           }
+       }
+       else {
+           showErrorMessage();
+       }
 
     }
 
@@ -65,8 +74,6 @@ public class MainActivity extends AppCompatActivity implements InternetUtils.URL
         outState.putParcelableArrayList("movieList",movieList);
         super.onSaveInstanceState(outState);
     }
-
-
     public static Context getContext() {
         return mContext;
     }
@@ -90,6 +97,15 @@ public class MainActivity extends AppCompatActivity implements InternetUtils.URL
         if(movieAdapter!=null) {
             movieAdapter.notifyDataSetChanged();
         }
+    }
+
+    private boolean isConnectedtoInternet() {
+        ConnectivityManager cm =
+                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null &&
+                activeNetwork.isConnected();
     }
 
     @Override
@@ -142,8 +158,12 @@ public class MainActivity extends AppCompatActivity implements InternetUtils.URL
                 showErrorMessage();
                 return;
             }
+            showMovieGridView();
             movieAdapter = new MovieAdapter(MainActivity.this, movieList);
             movieGridView.setAdapter(movieAdapter);
+
+
+
             showMovieGridView();
             movieGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
